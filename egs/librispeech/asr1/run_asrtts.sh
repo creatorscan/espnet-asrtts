@@ -24,6 +24,7 @@ preprocess_config=conf/specaug.yaml
 train_config=conf/train.yaml # current default recipe requires 4 gpus.
                              # if you do not have 4 gpus, please reconfigure the `batch-bins` and `accum-grad` parameters in config.
 train_config=conf/train_blstm_6L_10heads.yaml
+tts_train_config=conf/train_pytorch_transformer+spkemb_red1.yaml
 lm_config=conf/lm.yaml
 decode_config=conf/decode.yaml
 
@@ -290,7 +291,7 @@ if [ ${stage} -le 6 ] && [ ${stop_stage} -ge 6 ]; then
            --resume ${resume} \
            --train-json ${tr_json} \
            --valid-json ${dt_json} \
-           --config ${train_config}
+           --config ${tts_train_config}
 fi
 
 asrtts_expdir=exp/${expname}_ASR_blstm_TTS_transformer
